@@ -6,15 +6,19 @@ class RegisterScreen extends StatelessWidget {
   final passwordController = TextEditingController();
 
   void register(BuildContext context) async {
-    bool success = await ApiService.registerUser(
+    final success = await ApiService.registerUser(
       emailController.text,
       passwordController.text,
     );
     if (success) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Usuário cadastrado!")));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Usuário cadastrado!")),
+      );
       Navigator.pop(context);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Erro no cadastro.")));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Erro ao cadastrar usuário.")),
+      );
     }
   }
 
@@ -27,7 +31,8 @@ class RegisterScreen extends StatelessWidget {
         child: Column(
           children: [
             TextField(controller: emailController, decoration: InputDecoration(labelText: "Email")),
-            TextField(controller: passwordController, decoration: InputDecoration(labelText: "Senha")),
+            TextField(controller: passwordController, obscureText: true, decoration: InputDecoration(labelText: "Senha")),
+            SizedBox(height: 16),
             ElevatedButton(onPressed: () => register(context), child: Text("Cadastrar"))
           ],
         ),
