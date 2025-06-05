@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'screens/tela_login.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: 'Flutter JSON API',
+    home: LoginScreen(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
